@@ -16,20 +16,18 @@ jobs:
     - name: Clone Gist
       run: |
         git clone https://gist.github.com/01f359244d679c576502fe2a65819014.git gist-repo
-        cd gist-repo
-        cp -r . ../
-        cd ..
+        cp -r gist-repo/* .  # Copy files from gist-repo to the current directory
 
     - name: Commit Changes
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git add .
-        git commit -m "Sync Gist with repository" || echo "No changes detected"
+        git add .  # Stage all changes
+        git commit -m "Sync Gist with repository" || echo "No changes detected"  # Commit changes if any
 
     - name: Push Changes
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # Use your secret GitHub token
       run: |
         git remote set-url origin https://shubhamcoder260:${{ secrets.GH_PAT }}@github.com/shubhamcoder260/ml_projects.git
-        git push origin main
+        git push origin main  # Change to the appropriate branch if needed
