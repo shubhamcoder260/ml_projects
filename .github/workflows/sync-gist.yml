@@ -31,5 +31,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       run: |
-        git remote set-url origin https://shubhamcoder260:${{ secrets.GH_PAT }}@github.com/<your-username>/my-notebooks-repo.git
+        git remote set-url origin https://shubhamcoder260:${{ secrets.GH_PAT }}@github.com/shubhamcoder260/ml_projects.git
         git push origin main
